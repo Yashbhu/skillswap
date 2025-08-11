@@ -8,15 +8,4 @@ import Dashboard from "./pages/Dashboard";
 
 export default function App() {
   return (
-    <Router>
-      <Navbar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/services" element={<Services />} />
-        <Route path="/services/:id" element={<ServiceDetails />} />
-        <Route path="/book/:id" element={<BookingForm />} />
-        <Route path="/dashboard" element={<Dashboard />} />
-      </Routes>
-    </Router>
-  );
-}
+    <Rou
