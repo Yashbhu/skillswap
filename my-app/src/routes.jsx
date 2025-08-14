@@ -3,7 +3,7 @@ import About from "./pages/About";
 import Pricing from "./pages/Pricing";
 import Home from "./pages/Home"; 
 import { Suspense,lazy } from "react";
-
+import Onboarding from "./pages/Onboarding";
 
 const DetailsForm = lazy(()=>import("./pages/Email"));
 
@@ -20,7 +20,7 @@ export const routes = [
           <DetailsForm />
         </Suspense>
       ) },
-      {path:"onboarding", element:<h1>Onboarding</h1>},
+      {path:"onboarding", element: <Onboarding/>},
     ]
   }
 ];

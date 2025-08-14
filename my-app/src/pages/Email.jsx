@@ -20,7 +20,15 @@ export default function DetailsForm() {
     e.preventDefault();
     console.log("Form submitted:", formData);
 
-    const isLogin = formData.email && formData.password && formData.name && formData.password===confirmPassword// simple validation
+    const isLogin =
+  formData.name &&
+  formData.email &&
+  formData.password &&
+  formData.confirmPassword
+    // Check if all fields are filled and passwords match
+
+
+
     if (isLogin) {
       navigate("/onboarding"); // redirect after submission
     } else {
