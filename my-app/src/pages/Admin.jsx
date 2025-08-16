@@ -1,6 +1,9 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 
 export default function Admin() {
+  const [allowRealtime, setAllowRealtime] = useState(false);
+
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50 px-4">
       <div className="w-4/5 max-w-5xl bg-white shadow-2xl rounded-3xl p-16 text-center">
@@ -25,8 +28,22 @@ export default function Admin() {
           ))}
         </div>
 
+      
+        <div className="mt-10 flex items-center justify-center space-x-4">
+          <label className="flex items-center space-x-3 text-lg font-medium text-gray-800">
+            <input
+              type="checkbox"
+              checked={allowRealtime}
+              onChange={(e) => setAllowRealtime(e.target.checked)}
+              className="h-6 w-6 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500"
+            />
+            Allow users to connect with me in real-time
+          </label>
+        </div>
+
         <Link
-          to="/onboarding/admin/dashboard"
+          to="/onboarding/admin/meet"
+          state={{ allowRealtime }} // pass the option to next route or backend
           className="mt-12 block w-1/2 mx-auto text-center bg-indigo-600 text-white py-5 rounded-2xl font-semibold text-lg hover:bg-indigo-700 transition"
         >
           Next

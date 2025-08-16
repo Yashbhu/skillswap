@@ -6,6 +6,7 @@ import { Suspense, lazy } from "react";
 import Onboarding from "./pages/Onboarding";
 import Admin from "./pages/Admin";
 import User from "./pages/User";
+import Meet from "./pages/meet";
 
 const DetailsForm = lazy(()=>import("./pages/Email"));
 
@@ -36,6 +37,10 @@ export const routes = [
 {
   path: "onboarding/user",
   element: <User />
+},
+{
+  path: "onboarding/admin/meet",
+  element: <Meet/>
 }
 
     ]
