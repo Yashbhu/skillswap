@@ -1,5 +1,13 @@
+import Layout from "./pages/Layout";
+import About from "./pages/About";  
+import Pricing from "./pages/Pricing";
+import Home from "./pages/Home"; 
+import { Suspense, lazy } from "react";
+import Onboarding from "./pages/Onboarding";
 import Admin from "./pages/Admin";
 import User from "./pages/User";
+
+const DetailsForm = lazy(()=>import("./pages/Email"));
 
 export const routes = [
   {
@@ -10,21 +18,26 @@ export const routes = [
       { path: "about", element: <About /> },
       { path: "pricing", element: <Pricing /> },
       { 
-        path: "email", 
-        element: (
+        path:"email", 
+        element:(
           <Suspense fallback={<div>Loading...</div>}>
             <DetailsForm />
           </Suspense>
         ) 
       },
-      { 
-        path: "onboarding", 
-        element: <Onboarding />,
-        children: [
-          { path: "admin", element: <Admin /> },
-          { path: "user", element: <User /> }
-        ]
-      }
+      {
+  path: "onboarding",
+  element: <Onboarding />
+},
+{
+  path: "onboarding/admin",
+  element: <Admin />
+},
+{
+  path: "onboarding/user",
+  element: <User />
+}
+
     ]
   }
 ];
