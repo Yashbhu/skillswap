@@ -10,7 +10,16 @@ SkillSwap is a **skill-based platform** where users can offer, learn, and moneti
 
 ---
 
-## Table of Contents
+## 📸 Screenshots
+
+All images are displayed at equal width for consistency:
+
+<img src="https://github.com/Yashbhu/skillswap/blob/e6a4883344309d10fb774e389f98f1be045b9446/Screenshot%20from%202025-08-17%2004-01-05.png?raw=true" alt="Landing Page" width="400"/>  
+<img src="https://github.com/Yashbhu/skillswap/blob/e6a4883344309d10fb774e389f98f1be045b9446/Screenshot%20from%202025-08-17%2004-01-14.png?raw=true" alt="Dashboard / Session" width="400"/>  
+
+---
+
+## 📑 Table of Contents
 
 1. [Features](#features)  
 2. [User Roles](#user-roles)  
@@ -23,7 +32,7 @@ SkillSwap is a **skill-based platform** where users can offer, learn, and moneti
 
 ---
 
-## Features
+## ✅ Features
 
 - **Role-Based Platform**: Admins can sell and manage skills; Users can browse, book, chat, and video call.  
 - **Real-Time Communication**: Chat and video calls powered by WebRTC.  
@@ -35,7 +44,7 @@ SkillSwap is a **skill-based platform** where users can offer, learn, and moneti
 
 ---
 
-## User Roles
+## 👥 User Roles
 
 ### Admin
 - Sell multiple skills and manage availability.  
@@ -49,7 +58,7 @@ SkillSwap is a **skill-based platform** where users can offer, learn, and moneti
 
 ---
 
-## Tech Stack
+## 🛠️ Tech Stack
 
 | Layer | Technology |
 |-------|------------|
@@ -62,7 +71,7 @@ SkillSwap is a **skill-based platform** where users can offer, learn, and moneti
 
 ---
 
-## Getting Started
+## ⚡ Getting Started
 
 ### Prerequisites
 - Node.js >= 20  
@@ -71,6 +80,5 @@ SkillSwap is a **skill-based platform** where users can offer, learn, and moneti
 
 ### Clone the Repository
 ```bash
-git clone <your-repo-url>
+git clone https://github.com/Yashbhu/skillswap.git
 cd skillswap
-
