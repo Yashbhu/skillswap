@@ -1,34 +1,49 @@
-import React, { useState } from "react";
-
-const onboardingData = [
-  { title: "Welcome", description: "Welcome to our app!" },
-  { title: "Profile Setup", description: "Set up your profile." },
-  { title: "Get Started", description: "Let's get started!" }
-];
+import { Link } from "react-router-dom";
 
 export default function Onboarding() {
-  const [currentStep, setCurrentStep] = useState(0);
-
-  const nextStep = () => {
-    if (currentStep < onboardingData.length - 1) {
-      setCurrentStep(currentStep + 1);
-    } else {
-      console.log("Finished onboarding");
-      // You can navigate to main page or dashboard here
-    }
-  };
-
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen">
-      <div className="bg-white p-8 rounded-lg shadow-lg w-96 text-center">
-        <h2 className="text-2xl font-bold mb-4">{onboardingData[currentStep].title}</h2>
-        <p className="mb-6">{onboardingData[currentStep].description}</p>
-        <button
-          className="bg-blue-500 text-white px-6 py-2 rounded"
-          onClick={nextStep}
-        >
-          {currentStep === onboardingData.length - 1 ? "Finish" : "Next"}
-        </button>
+    <div className="min-h-screen flex items-center justify-center bg-gray-50 px-4">
+      <div className="w-full max-w-lg bg-white rounded-2xl shadow-xl p-8 text-center">
+        
+        <h1 className="text-3xl font-semibold text-gray-900">
+          What’s your role?
+        </h1>
+        <p className="text-gray-500 mt-2">
+          Choose how you want to offer or request skills on SkillSwap.
+        </p>
+
+        
+        <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2">
+          <Link
+            to="admin"
+            className="block rounded-xl border border-gray-200 p-6 hover:border-indigo-500 hover:shadow-md transition-all group"
+          >
+            <div className="text-indigo-500 group-hover:text-indigo-600 text-4xl mb-3">
+              👨‍💼
+            </div>
+            <h2 className="text-lg font-medium text-gray-800">Admin</h2>
+            <p className="text-sm text-gray-500 mt-1">
+              Manage the platform, users, and skill categories.
+            </p>
+          </Link>
+
+          <Link
+            to="user"
+            className="block rounded-xl border border-gray-200 p-6 hover:border-green-500 hover:shadow-md transition-all group"
+          >
+            <div className="text-green-500 group-hover:text-green-600 text-4xl mb-3">
+              🙋‍♂️
+            </div>
+            <h2 className="text-lg font-medium text-gray-800">User</h2>
+            <p className="text-sm text-gray-500 mt-1">
+              Offer your skills or find people to collaborate with.
+            </p>
+          </Link>
+        </div>
+
+        <p className="mt-6 text-xs text-gray-400">
+          You can always change your role later in settings.
+        </p>
       </div>
     </div>
   );
