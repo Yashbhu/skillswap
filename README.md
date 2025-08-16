@@ -1,119 +1,75 @@
-SkillSwap
+# SkillSwap
 
-SkillSwap is a skill-based platform where users can offer, learn, and monetize multiple skills. Users can connect with mentors through chat, video calls, and bookings, while Admins manage skills, availability, and premium subscriptions.
+![React](https://img.shields.io/badge/React-18.2.0-blue?logo=react) 
+![Node.js](https://img.shields.io/badge/Node.js-20.2.0-green?logo=node.js) 
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-15.5-blue?logo=postgresql) 
+![TailwindCSS](https://img.shields.io/badge/TailwindCSS-3.3.3-blue?logo=tailwind-css) 
+![WebRTC](https://img.shields.io/badge/WebRTC-real-time-purple)
 
-Table of Contents
+SkillSwap is a **skill-based platform** where users can offer, learn, and monetize multiple skills. Users can connect with mentors through **chat, video calls, and bookings**, while Admins manage skills, availability, and premium subscriptions.
 
-Features
+---
 
-User Roles
+## Table of Contents
 
-Tech Stack
+1. [Features](#features)  
+2. [User Roles](#user-roles)  
+3. [Tech Stack](#tech-stack)  
+4. [Getting Started](#getting-started)  
+5. [Setup & Installation](#setup--installation)  
+6. [Screenshots](#screenshots)  
+7. [Future Enhancements](#future-enhancements)  
+8. [License](#license)  
 
-Getting Started
+---
 
-Setup & Installation
+## Features
 
-Screenshots
+- **Role-Based Platform**: Admins can sell and manage skills; Users can browse, book, chat, and video call.  
+- **Real-Time Communication**: Chat and video calls powered by WebRTC.  
+- **Booking System**: Schedule sessions with mentors, with optional calendar sync.  
+- **Authentication**: Secure login and signup.  
+- **Pricing & Subscription Plans**: Access premium features with Starter, Pro, or Enterprise plans.  
+- **Responsive Design**: Built with React + TailwindCSS for modern UI.  
+- **Caching & Performance**: Redis caching for faster responses.  
 
-Future Enhancements
+---
 
-License
+## User Roles
 
-Features
+### Admin
+- Sell multiple skills and manage availability.  
+- Offer mentorship via booking and real-time calls.  
+- Access analytics and manage users.  
 
-Role-Based Platform: Admins can sell and manage skills; Users can browse, book, chat, and video call.
+### User
+- Browse available skills and mentors.  
+- Book sessions with Admins or other users.  
+- Chat or video call mentors in real-time.  
 
-Real-Time Communication: Chat and video calls powered by WebRTC.
+---
 
-Booking System: Schedule sessions with mentors, with optional calendar sync.
+## Tech Stack
 
-Authentication: Secure login and signup.
+| Layer | Technology |
+|-------|------------|
+| Frontend | React, TailwindCSS |
+| Backend | Node.js, Express |
+| Database | PostgreSQL with Prisma ORM |
+| Caching | Redis |
+| Real-Time | WebRTC for chat & video |
+| Deployment | Vite / Node.js server |
 
-Pricing & Subscription Plans: Access premium features with Starter, Pro, or Enterprise plans.
+---
 
-Responsive Design: Built with React + TailwindCSS for modern UI.
+## Getting Started
 
-Caching & Performance: Redis caching for faster responses.
+### Prerequisites
+- Node.js >= 20  
+- PostgreSQL >= 15  
+- Redis for caching  
 
-User Roles
-Admin
-
-Sell multiple skills and manage availability.
-
-Offer mentorship via booking and real-time calls.
-
-Access analytics and manage users.
-
-User
-
-Browse available skills and mentors.
-
-Book sessions with Admins or other users.
-
-Chat or video call mentors in real-time.
-
-Tech Stack
-Layer	Technology
-Frontend	React, TailwindCSS
-Backend	Node.js, Express
-Database	PostgreSQL with Prisma ORM
-Caching	Redis
-Real-Time	WebRTC for chat & video
-Deployment	Vite / Node.js server
-Getting Started
-Prerequisites
-
-Node.js >= 20
-
-PostgreSQL >= 15
-
-Redis for caching
-
-Clone the Repository
+### Clone the Repository
+```bash
 git clone <your-repo-url>
 cd skillswap
-
-Install Dependencies
-npm install
-
-Environment Variables
-
-Create a .env file and set:
-
-DATABASE_URL=postgresql://username:password@localhost:5432/skillswap
-REDIS_URL=redis://localhost:6379
-JWT_SECRET=your_secret_key
-
-Run the App
-npm run dev
-
-Screenshots
-
-Home / Landing Page
-
-
-Role Selection / Onboarding
-
-
-Pricing & Subscription
-
-
-Booking / Chat
-
-
-Add your own screenshots to the screenshots/ folder.
-
-Future Enhancements
-
-Calendar sync with Google/Outlook for seamless scheduling.
-
-Advanced analytics dashboard for Admins.
-
-Mobile-first optimizations and PWA support.
-
-AI recommendations for matching users with mentors.
-
-License
-
-This project is licensed under the MIT License © 2025 SkillSwap.
