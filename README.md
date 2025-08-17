@@ -12,7 +12,7 @@ SkillSwap is a **skill-based platform** where users can offer, learn, and moneti
 
 ## 📸 Screenshots
 
-All images are displayed at equal width for consistency:
+
 
 <img src="https://github.com/Yashbhu/skillswap/blob/e6a4883344309d10fb774e389f98f1be045b9446/Screenshot%20from%202025-08-17%2004-01-05.png?raw=true" alt="Landing Page" width="400"/>  
 <img src="https://github.com/Yashbhu/skillswap/blob/e6a4883344309d10fb774e389f98f1be045b9446/Screenshot%20from%202025-08-17%2004-01-14.png?raw=true" alt="Dashboard / Session" width="400"/>  
