@@ -7,6 +7,7 @@ import Onboarding from "./pages/Onboarding";
 import Admin from "./pages/Admin";
 import User from "./pages/User";
 import Meet from "./pages/meet";
+import Dashboard from "./pages/Dashboard";
 
 const DetailsForm = lazy(()=>import("./pages/Email"));
 
@@ -41,6 +42,10 @@ export const routes = [
 {
   path: "onboarding/admin/meet",
   element: <Meet/>
+},
+{
+  path:"onboarding/admin/dashboard",
+  element:<Dashboard/>
 }
 
     ]

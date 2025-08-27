@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import { gapi } from "gapi-script";
+import { NavLink } from "react-router-dom";
 
 const CLIENT_ID = import.meta.env.VITE_GOOGLE_CLIENT_ID;
 const SCOPES = "https://www.googleapis.com/auth/calendar.events";
@@ -20,9 +20,7 @@ function Dropdown({ options, selected, setSelected }) {
   const handleGoogleConnect = () => {
     const authInstance = gapi.auth2.getAuthInstance();
     authInstance.signIn().then(() => {
-      console.log("Google Calendar connected!");
       alert("Google Calendar connected!");
-      
     });
   };
 
@@ -52,16 +50,14 @@ function Dropdown({ options, selected, setSelected }) {
                 {option}
               </span>
 
-              {option === "Google Calendar" && (
+              {option === "Google Calendar" ? (
                 <button
                   onClick={handleGoogleConnect}
                   className="bg-green-600 text-white py-2 px-4 sm:py-3 sm:px-6 rounded-2xl hover:bg-green-700 text-sm sm:text-lg font-semibold shadow-md"
                 >
                   Connect
                 </button>
-              )}
-
-              {option !== "Google Calendar" && (
+              ) : (
                 <button
                   onClick={() => alert(`Connect ${option} later`)}
                   className="bg-gray-500 text-white py-2 px-4 sm:py-3 sm:px-6 rounded-2xl text-sm sm:text-lg font-semibold shadow-md"
@@ -80,11 +76,6 @@ function Dropdown({ options, selected, setSelected }) {
 export default function Meet() {
   const [answer, setAnswer] = useState("");
   const [dropdownValue, setDropdownValue] = useState("");
-  const navigate = useNavigate();
-
-  const handleSubmit = () => {
-    navigate("/next-page", { state: { answer, dropdownValue } });
-  };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100 p-4">
@@ -127,12 +118,13 @@ export default function Meet() {
           />
         )}
 
-        <button
-          onClick={handleSubmit}
-          className="mt-10 w-full sm:w-1/2 bg-indigo-700 text-white py-4 px-6 rounded-3xl hover:bg-indigo-800 transition-all text-xl sm:text-2xl font-extrabold shadow-lg self-center"
+        <NavLink
+          to="/onboarding/admin/dashboard"
+          state={{ answer, dropdownValue }}
+          className="mt-10 w-full sm:w-1/2 bg-indigo-700 text-white py-4 px-6 rounded-3xl hover:bg-indigo-800 transition-all text-xl sm:text-2xl font-extrabold shadow-lg self-center text-center"
         >
           Submit
-        </button>
+        </NavLink>
       </div>
     </div>
   );
