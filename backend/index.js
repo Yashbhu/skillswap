@@ -9,7 +9,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// Create a new user
+
 app.post("/api/users", async (req, res) => {
   const { username, email, status } = req.body;
   try {
@@ -23,7 +23,7 @@ app.post("/api/users", async (req, res) => {
   }
 });
 
-// Get all users
+
 app.get("/api/users", async (req, res) => {
   try {
     const users = await prisma.user.findMany({
@@ -36,7 +36,7 @@ app.get("/api/users", async (req, res) => {
   }
 });
 
-// Update user status
+
 app.put("/api/users/:id", async (req, res) => {
   const { id } = req.params;
   const { status } = req.body;
@@ -52,7 +52,6 @@ app.put("/api/users/:id", async (req, res) => {
   }
 });
 
-// Delete a user
 app.delete("/api/users/:id", async (req, res) => {
   const { id } = req.params;
   try {
