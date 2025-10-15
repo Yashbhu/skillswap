@@ -1,8 +1,21 @@
 import express from "express";
-import { getPopularSkills } from "./controllers/skillController.js";
+import {
+  getPopularSkills,
+  getSkills,
+  createSkill,
+  updateSkill,
+  deleteSkill
+} from "./controllers/skillController.js";
 
 const router = express.Router();
 
+// Public endpoints
+router.get("/", getSkills);
 router.get("/popular", getPopularSkills);
+
+// Admin endpoints
+router.post("/", createSkill);
+router.put("/:id", updateSkill);
+router.delete("/:id", deleteSkill);
 
 export default router;
