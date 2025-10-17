@@ -1,0 +1,26 @@
+{
+  "name": "skillswap",
+  "version": "1.0.0",
+  "description": "![React](https://img.shields.io/badge/React-18.2.0-blue?logo=react)  ![Node.js](https://img.shields.io/badge/Node.js-20.2.0-green?logo=node.js)  ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-15.5-blue?logo=postgresql)  ![TailwindCSS](https://img.shields.io/badge/TailwindCSS-3.3.3-blue?logo=tailwind-css)  ![WebRTC](https://img.shields.io/badge/WebRTC-real-time-purple)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Yashbhu/skillswap.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Yashbhu/skillswap/issues"
+  },
+  "homepage": "https://github.com/Yashbhu/skillswap#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^5.1.0",
+    "socket.io": "^4.8.1"
+  }
+}
