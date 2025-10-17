@@ -2,6 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const { PrismaClient } = require('@prisma/client');
+import socketService from './services/socketService.js';
 
 const prisma = new PrismaClient();
 const app = express();
