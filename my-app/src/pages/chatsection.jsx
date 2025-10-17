@@ -1,15 +1,18 @@
 import React, { useState, useEffect, useRef } from "react";
 import { io } from "socket.io-client";
 
-const socket = io("http://localhost:5000"); 
+const socket = io("http://localhost:5000");
+
+
+const username = prompt("Enter your name (Yash or Yash Part 2)") || "Yash";
 
 const Chat = () => {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState("");
   const messagesEndRef = useRef(null);
 
+
   useEffect(() => {
-    // Listen for messages from server
     socket.on("receiveMessage", (message) => {
       setMessages((prev) => [...prev, message]);
     });
@@ -19,15 +22,17 @@ const Chat = () => {
     };
   }, []);
 
+  // Scroll to bottom
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
+  // Send message
   const sendMessage = () => {
     if (!input.trim()) return;
 
-    const message = { sender: "You", text: input };
-    setMessages((prev) => [...prev, message]);
+    const message = { sender: username, text: input };
+    setMessages((prev) => [...prev, message]); // show immediately
     socket.emit("sendMessage", message); // send to server
     setInput("");
   };
@@ -44,12 +49,12 @@ const Chat = () => {
           <div
             key={index}
             className={`mb-2 flex ${
-              msg.sender === "You" ? "justify-end" : "justify-start"
+              msg.sender === username ? "justify-end" : "justify-start"
             }`}
           >
             <div
               className={`px-4 py-2 rounded-2xl max-w-[70%] break-words ${
-                msg.sender === "You"
+                msg.sender === username
                   ? "bg-green-500 text-white"
                   : "bg-gray-200 text-gray-800"
               }`}
@@ -62,7 +67,7 @@ const Chat = () => {
         <div ref={messagesEndRef} />
       </div>
 
-    
+      {/* Input */}
       <div className="flex border-t border-gray-300 p-2">
         <input
           type="text"
