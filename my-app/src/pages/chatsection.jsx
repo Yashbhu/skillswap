@@ -1,45 +1,81 @@
 import React, { useState, useEffect, useRef } from "react";
 import { io } from "socket.io-client";
 
-const socket = io("http://localhost:5000");
-
-
-const username = prompt("Enter your name (Yash or Yash Part 2)") || "Yash";
-
 const Chat = () => {
+  const [username, setUsername] = useState("");
+  const [entered, setEntered] = useState(false);
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState("");
   const messagesEndRef = useRef(null);
+  const socketRef = useRef(null);
 
-
+  // Connect socket and fetch previous messages
   useEffect(() => {
-    socket.on("receiveMessage", (message) => {
+    if (!entered) return;
+
+    // 1️⃣ Fetch existing messages from backend
+    fetch("http://localhost:5000/api/messages")
+      .then((res) => res.json())
+      .then((data) => setMessages(data))
+      .catch((err) => console.error(err));
+
+    // 2️⃣ Connect Socket.IO
+    socketRef.current = io("http://localhost:5000");
+    socketRef.current.on("receiveMessage", (message) => {
       setMessages((prev) => [...prev, message]);
     });
 
     return () => {
-      socket.off("receiveMessage");
+      socketRef.current.disconnect();
     };
-  }, []);
+  }, [entered]);
 
-  // Scroll to bottom
+  // Scroll to bottom on new messages
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
-  // Send message
   const sendMessage = () => {
     if (!input.trim()) return;
 
     const message = { sender: username, text: input };
-    setMessages((prev) => [...prev, message]); // show immediately
-    socket.emit("sendMessage", message); // send to server
+
+    // 1️⃣ Show immediately in UI
+    setMessages((prev) => [...prev, message]);
+
+    // 2️⃣ Send to backend for persistence
+    fetch("http://localhost:5000/api/messages", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(message),
+    }).catch((err) => console.error(err));
+
+    // 3️⃣ Broadcast to other clients via socket
+    socketRef.current.emit("sendMessage", message);
+
     setInput("");
   };
 
-  const handleKeyPress = (e) => {
-    if (e.key === "Enter") sendMessage();
-  };
+  if (!entered) {
+    return (
+      <div className="flex flex-col items-center justify-center h-screen">
+        <h2 className="mb-4 text-xl font-semibold">Enter your name</h2>
+        <input
+          type="text"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+          placeholder="Yash or Yash Part 2"
+          className="border p-2 rounded mb-4"
+        />
+        <button
+          onClick={() => username.trim() && setEntered(true)}
+          className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600"
+        >
+          Join Chat
+        </button>
+      </div>
+    );
+  }
 
   return (
     <div className="w-full max-w-md h-[500px] border border-gray-300 rounded-lg flex flex-col mx-auto shadow-lg overflow-hidden">
@@ -75,7 +111,7 @@ const Chat = () => {
           placeholder="Type a message..."
           value={input}
           onChange={(e) => setInput(e.target.value)}
-          onKeyPress={handleKeyPress}
+          onKeyPress={(e) => e.key === "Enter" && sendMessage()}
         />
         <button
           className="ml-2 px-4 py-2 rounded-full bg-green-500 text-white font-semibold hover:bg-green-600"

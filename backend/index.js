@@ -1,9 +1,8 @@
-// index.js
 import express from "express";
 import cors from "cors";
 import { PrismaClient } from "@prisma/client";
-import { initSocket } from "./services/socketService.js";
 import dotenv from "dotenv";
+import { initSocket } from "./services/socketService.js";
 
 dotenv.config();
 
@@ -15,7 +14,6 @@ app.use(cors());
 app.use(express.json());
 
 // ------------------- REST API -------------------
-
 app.post("/api/users", async (req, res) => {
   const { username, email, status } = req.body;
   try {
@@ -69,10 +67,9 @@ app.delete("/api/users/:id", async (req, res) => {
   }
 });
 
-// ------------------- Start Server & Socket -------------------
+// ------------------- Start Server & Initialize Socket -------------------
 const server = app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
 
-// Initialize Socket.IO
-initSocket(server);
+initSocket(server); // attach socket to the HTTP server
