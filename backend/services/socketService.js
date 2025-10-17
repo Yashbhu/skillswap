@@ -17,9 +17,9 @@ const io = new Server(server, {
 io.on("connection", (socket) => {
   console.log(" New client connected:", socket.id);
 
-  // Listen for messages from a client
+  
   socket.on("sendMessage", (message) => {
-    // Broadcast message to all other clients
+    
     io.emit("receiveMessage", message);
   });
 
