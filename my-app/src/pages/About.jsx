@@ -2,7 +2,9 @@ import React from 'react'
 
 function About() {
   return (
-    <div>About</div>
+    <div>about us
+      <p>We are a platform that connects people who want to learn and teach skills.</p>
+    </div>
   )
 }
 
