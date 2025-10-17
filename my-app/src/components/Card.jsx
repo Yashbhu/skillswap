@@ -5,7 +5,7 @@ export default function LandingPage() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white flex flex-col justify-between">
       
-      {/* Hero Section */}
+      
       <header className="flex flex-col items-center justify-center text-center px-6 pt-24 md:pt-40">
         <h1 className="text-6xl md:text-8xl font-extrabold text-indigo-600 tracking-tight leading-tight">
           SKILLSWAP
