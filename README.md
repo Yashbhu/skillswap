@@ -1,12 +1,12 @@
-# SkillSwap
+# 🎓 SkillSwap - Real-time Skill Exchange Platform
 
-![React](https://img.shields.io/badge/React-18.2.0-blue?logo=react) 
+![React](https://img.shields.io/badge/React-19.1.1-blue?logo=react) 
 ![Node.js](https://img.shields.io/badge/Node.js-20.2.0-green?logo=node.js) 
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-15.5-blue?logo=postgresql) 
-![TailwindCSS](https://img.shields.io/badge/TailwindCSS-3.3.3-blue?logo=tailwind-css) 
-![WebRTC](https://img.shields.io/badge/WebRTC-real-time-purple)
+![TailwindCSS](https://img.shields.io/badge/TailwindCSS-4.1.11-blue?logo=tailwind-css) 
+![Socket.IO](https://img.shields.io/badge/Socket.IO-4.8.1-purple)
 
-SkillSwap is a **skill-based platform** where users can offer, learn, and monetize multiple skills. Users can connect with mentors through **chat, video calls, and bookings**, while Admins manage skills, availability, and premium subscriptions.
+SkillSwap is a **production-ready skill-based platform** where users can offer, learn, and monetize multiple skills. Connect with mentors through **real-time chat, video calls, and bookings**. Admins manage skills, availability, and premium subscriptions.
 
 ---
 

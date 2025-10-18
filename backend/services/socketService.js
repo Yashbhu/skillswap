@@ -2,19 +2,40 @@
 import { Server } from "socket.io";
 
 export function initSocket(server) {
+  const allowedOrigins = process.env.CORS_ORIGINS 
+    ? process.env.CORS_ORIGINS.split(',')
+    : ['http://localhost:5173', 'http://localhost:3000'];
+
   const io = new Server(server, {
-    cors: { origin: "http://localhost:5173" },
+    cors: { 
+      origin: function (origin, callback) {
+        // Allow requests with no origin
+        if (!origin) return callback(null, true);
+        
+        // Check if origin is in allowed list or is a Vercel deployment
+        if (allowedOrigins.includes(origin) || origin.includes('vercel.app')) {
+          callback(null, true);
+        } else {
+          callback(new Error('Not allowed by CORS'));
+        }
+      },
+      credentials: true,
+      methods: ["GET", "POST"]
+    },
   });
 
   io.on("connection", (socket) => {
-    console.log("✅ User connected:", socket.id);
+    console.log(" User connected:", socket.id);
 
     socket.on("sendMessage", (message) => {
-      io.emit("receiveMessage", message); // send to all
+      // Broadcast to all OTHER users (not back to sender)
+      socket.broadcast.emit("receiveMessage", message);
     });
 
     socket.on("disconnect", () => {
-      console.log("❌ User disconnected:", socket.id);
+      console.log("User disconnected:", socket.id);
     });
   });
+
+  return io;
 }

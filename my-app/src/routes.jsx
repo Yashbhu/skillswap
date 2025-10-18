@@ -8,6 +8,7 @@ import Admin from "./pages/Admin";
 import User from "./pages/User";
 import Meet from "./pages/meet";
 import Dashboard from "./pages/Dashboard";
+import Chatsection from "./pages/Chatsection";
 
 const DetailsForm = lazy(()=>import("./pages/Email"));
 
@@ -46,6 +47,10 @@ export const routes = [
 {
   path:"onboarding/admin/dashboard",
   element:<Dashboard/>
+},
+{
+  path: "chat",
+  element: <Chatsection />
 }
 
     ]
