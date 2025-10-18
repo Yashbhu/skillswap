@@ -1,3 +1,4 @@
+// frontend/Chat.jsx
 import React, { useState, useEffect, useRef } from "react";
 import { io } from "socket.io-client";
 
@@ -9,53 +10,33 @@ const Chat = () => {
   const messagesEndRef = useRef(null);
   const socketRef = useRef(null);
 
-  // Connect socket and fetch previous messages
+  // Connect to socket only once
   useEffect(() => {
-    if (!entered) return;
+    if (entered && !socketRef.current) {
+      socketRef.current = io("http://localhost:5000");
 
-    // 1️⃣ Fetch existing messages from backend
-    fetch("http://localhost:5000/api/messages")
-      .then((res) => res.json())
-      .then((data) => setMessages(data))
-      .catch((err) => console.error(err));
+      socketRef.current.on("receiveMessage", (message) => {
+        setMessages((prev) => [...prev, message]);
+      });
 
-    // 2️⃣ Connect Socket.IO
-    socketRef.current = io("http://localhost:5000");
-    socketRef.current.on("receiveMessage", (message) => {
-      setMessages((prev) => [...prev, message]);
-    });
-
-    return () => {
-      socketRef.current.disconnect();
-    };
+      return () => socketRef.current.disconnect();
+    }
   }, [entered]);
 
-  // Scroll to bottom on new messages
+  // Scroll to bottom
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
   const sendMessage = () => {
     if (!input.trim()) return;
-
     const message = { sender: username, text: input };
-
-    // 1️⃣ Show immediately in UI
-    setMessages((prev) => [...prev, message]);
-
-    // 2️⃣ Send to backend for persistence
-    fetch("http://localhost:5000/api/messages", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(message),
-    }).catch((err) => console.error(err));
-
-    // 3️⃣ Broadcast to other clients via socket
-    socketRef.current.emit("sendMessage", message);
-
+    setMessages((prev) => [...prev, message]); // show immediately
+    socketRef.current.emit("sendMessage", message); // send to all users
     setInput("");
   };
 
+  // Username input form
   if (!entered) {
     return (
       <div className="flex flex-col items-center justify-center h-screen">
@@ -79,7 +60,6 @@ const Chat = () => {
 
   return (
     <div className="w-full max-w-md h-[500px] border border-gray-300 rounded-lg flex flex-col mx-auto shadow-lg overflow-hidden">
-      {/* Messages */}
       <div className="flex-1 p-4 overflow-y-auto bg-gray-50">
         {messages.map((msg, index) => (
           <div
@@ -103,7 +83,6 @@ const Chat = () => {
         <div ref={messagesEndRef} />
       </div>
 
-      {/* Input */}
       <div className="flex border-t border-gray-300 p-2">
         <input
           type="text"
@@ -111,7 +90,7 @@ const Chat = () => {
           placeholder="Type a message..."
           value={input}
           onChange={(e) => setInput(e.target.value)}
-          onKeyPress={(e) => e.key === "Enter" && sendMessage()}
+          onKeyDown={(e) => e.key === "Enter" && sendMessage()}
         />
         <button
           className="ml-2 px-4 py-2 rounded-full bg-green-500 text-white font-semibold hover:bg-green-600"
