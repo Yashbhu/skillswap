@@ -9,10 +9,10 @@ export function initSocket(server) {
   const io = new Server(server, {
     cors: { 
       origin: function (origin, callback) {
-        // Allow requests with no origin
+       
         if (!origin) return callback(null, true);
         
-        // Check if origin is in allowed list or is a Vercel deployment
+        
         if (allowedOrigins.includes(origin) || origin.includes('vercel.app')) {
           callback(null, true);
         } else {
